@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=OSLike primeiro login
+Exec=/usr/local/bin/oslike-firstrun
+NoDisplay=true
+OnlyShowIn=KDE;
+X-KDE-autostart-phase=1

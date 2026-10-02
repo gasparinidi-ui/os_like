@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=Este Computador
+Icon=computer
+Exec=dolphin /

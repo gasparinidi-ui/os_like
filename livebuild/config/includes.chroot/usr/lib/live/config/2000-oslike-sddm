@@ -1,0 +1,11 @@
+#!/bin/sh
+# live-config: login automático no SDDM apenas na sessão live.
+# Não é executado no sistema instalado (live-config é removido pelo instalador).
+LIVE_USERNAME="${LIVE_USERNAME:-oslike}"
+
+mkdir -p /etc/sddm.conf.d
+cat > /etc/sddm.conf.d/live-autologin.conf <<CONF
+[Autologin]
+User=${LIVE_USERNAME}
+Session=plasma
+CONF

@@ -1,0 +1,47 @@
+name: Build ISO
+
+on:
+  workflow_dispatch:
+  push:
+    tags: ["v*"]
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: ShellCheck
+        run: |
+          shellcheck scripts/*.sh livebuild/auto/* \
+            livebuild/config/hooks/normal/*.hook.chroot \
+            livebuild/config/includes.chroot/usr/local/bin/oslike-firstrun \
+            livebuild/config/includes.chroot/usr/lib/live/config/2000-oslike-sddm
+      - name: Validar JSON
+        run: find livebuild -name '*.json' -print0 | xargs -0 -n1 python3 -m json.tool > /dev/null
+
+  build:
+    if: github.event_name != 'pull_request'
+    needs: lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Liberar espaço em disco
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
+          sudo docker image prune -af
+          df -h /
+
+      - name: Gerar ISO
+        run: ./scripts/build.sh
+
+      - name: Publicar ISO como artefato
+        uses: actions/upload-artifact@v4
+        with:
+          name: oslike-iso
+          path: out/*
+          compression-level: 0
+          retention-days: 14
+

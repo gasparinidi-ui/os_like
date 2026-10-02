@@ -1,0 +1,22 @@
+#!/bin/sh
+# Primeiro login: coloca os atalhos padrão na área de trabalho (estilo Windows).
+MARK="${XDG_CONFIG_HOME:-$HOME/.config}/oslike-firstrun.done"
+[ -e "$MARK" ] && exit 0
+
+xdg-user-dirs-update >/dev/null 2>&1 || true
+DESKTOP_DIR="$(xdg-user-dir DESKTOP 2>/dev/null || echo "$HOME/Desktop")"
+mkdir -p "$DESKTOP_DIR"
+
+for f in /usr/share/oslike/desktop-icons/*.desktop; do
+	install -m 0755 "$f" "$DESKTOP_DIR/"
+done
+
+# No modo live, adiciona o atalho do instalador
+if grep -qw "boot=live" /proc/cmdline && [ -f /usr/share/applications/install-debian.desktop ]; then
+	sed 's/^Name=.*/Name=Instalar OSLike/' /usr/share/applications/install-debian.desktop \
+		> "$DESKTOP_DIR/instalar-oslike.desktop"
+	chmod 0755 "$DESKTOP_DIR/instalar-oslike.desktop"
+fi
+
+mkdir -p "$(dirname "$MARK")"
+touch "$MARK"

@@ -1,0 +1,6 @@
+# Scripts precisam de fim de linha LF mesmo quando clonados no Windows
+*.sh text eol=lf
+*.hook.chroot text eol=lf
+livebuild/** text eol=lf
+*.png binary
+*.ps1 text eol=crlf

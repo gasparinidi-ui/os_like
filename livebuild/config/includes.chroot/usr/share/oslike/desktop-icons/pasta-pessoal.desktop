@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=Meus Arquivos
+Icon=user-home
+Exec=dolphin

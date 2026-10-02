@@ -1,0 +1,64 @@
+# --- Sistema live ---
+live-boot
+live-config
+live-config-systemd
+sudo
+locales
+task-brazilian-portuguese
+
+# --- Ambiente gráfico (KDE Plasma 6, configurado estilo Windows) ---
+kde-plasma-desktop
+sddm
+plasma-nm
+plasma-pa
+bluedevil
+powerdevil
+systemsettings
+kinfocenter
+breeze-gtk-theme
+kde-config-gtk-style
+plymouth
+plymouth-theme-breeze
+pipewire-audio
+network-manager
+xdg-user-dirs
+
+# --- Aplicativos (equivalentes aos do Windows) ---
+dolphin
+konsole
+kate
+ark
+okular
+gwenview
+spectacle
+kcalc
+partitionmanager
+firefox-esr
+firefox-esr-l10n-pt-br
+libreoffice-writer
+libreoffice-calc
+libreoffice-impress
+libreoffice-l10n-pt-br
+vlc
+
+# --- Loja de aplicativos ---
+plasma-discover
+plasma-discover-backend-flatpak
+flatpak
+
+# --- Fontes (métricas compatíveis com Arial/Times/Calibri/Cambria) ---
+fonts-noto-core
+fonts-noto-color-emoji
+fonts-liberation
+fonts-crosextra-carlito
+fonts-crosextra-caladea
+
+# --- Instalador gráfico ---
+calamares
+calamares-settings-debian
+
+# --- Firmware / hardware ---
+firmware-linux
+firmware-iwlwifi
+firmware-realtek
+firmware-misc-nonfree

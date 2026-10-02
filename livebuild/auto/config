@@ -1,0 +1,23 @@
+#!/bin/sh
+# Configuração do live-build para o OSLike.
+# Executado automaticamente por "lb config".
+set -e
+
+lb config noauto \
+	--mode debian \
+	--distribution trixie \
+	--architectures amd64 \
+	--archive-areas "main contrib non-free non-free-firmware" \
+	--debian-installer none \
+	--binary-images iso-hybrid \
+	--firmware-binary true \
+	--firmware-chroot true \
+	--security true \
+	--updates true \
+	--memtest none \
+	--image-name oslike \
+	--iso-application "OSLike" \
+	--iso-publisher "OSLike Project" \
+	--iso-volume "OSLike" \
+	--bootappend-live "boot=live components quiet splash username=oslike hostname=oslike locales=pt_BR.UTF-8 keyboard-layouts=br timezone=America/Sao_Paulo" \
+	"${@}"

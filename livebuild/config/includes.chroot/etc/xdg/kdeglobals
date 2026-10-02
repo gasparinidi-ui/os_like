@@ -1,0 +1,6 @@
+[KDE]
+LookAndFeelPackage=org.oslike.desktop
+SingleClick=false
+
+[General]
+ColorScheme=BreezeLight

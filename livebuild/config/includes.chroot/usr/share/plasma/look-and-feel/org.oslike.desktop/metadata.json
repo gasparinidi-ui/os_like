@@ -1,0 +1,13 @@
+{
+    "KPackageStructure": "Plasma/LookAndFeel",
+    "KPlugin": {
+        "Authors": [{ "Name": "OSLike Project" }],
+        "Category": "",
+        "Description": "Layout estilo Windows: barra de tarefas embaixo, menu Iniciar e ícones na área de trabalho",
+        "Id": "org.oslike.desktop",
+        "License": "GPL-2.0+",
+        "Name": "OSLike",
+        "Version": "1.0"
+    },
+    "X-Plasma-MainScript": "defaults"
+}

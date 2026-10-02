@@ -1,0 +1,32 @@
+#!/bin/sh
+# Identidade visual e nome do sistema.
+set -e
+
+cat > /etc/os-release <<'OSR'
+PRETTY_NAME="OSLike 1.0 (base Debian 13)"
+NAME="OSLike"
+VERSION_ID="1.0"
+VERSION="1.0"
+VERSION_CODENAME=trixie
+ID=oslike
+ID_LIKE=debian
+HOME_URL="https://github.com/gasparinidi-ui/os_like"
+SUPPORT_URL="https://github.com/gasparinidi-ui/os_like/issues"
+BUG_REPORT_URL="https://github.com/gasparinidi-ui/os_like/issues"
+OSR
+
+printf 'OSLike 1.0 \\n \\l\n' > /etc/issue
+echo "OSLike 1.0" > /etc/issue.net
+echo "oslike" > /etc/hostname
+
+# Tema de boot
+if command -v plymouth-set-default-theme >/dev/null 2>&1; then
+	plymouth-set-default-theme breeze || true
+fi
+
+# Cache de ícones (ícone do menu Iniciar)
+if command -v gtk-update-icon-cache >/dev/null 2>&1; then
+	gtk-update-icon-cache -f /usr/share/icons/hicolor || true
+fi
+
+chmod +x /usr/local/bin/oslike-firstrun /usr/share/oslike/desktop-icons/*.desktop

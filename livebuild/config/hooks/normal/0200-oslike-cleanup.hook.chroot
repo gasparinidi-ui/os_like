@@ -1,0 +1,6 @@
+#!/bin/sh
+# Reduz o tamanho da ISO.
+set -e
+apt-get -y autoremove --purge
+apt-get clean
+rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
