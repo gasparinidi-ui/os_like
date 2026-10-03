@@ -13,6 +13,7 @@ cd "$WORK"
 lb clean
 rm -f ./*.iso build.log
 lb config
+/build/scripts/customize-bootloaders.sh "$WORK" /build/artwork
 lb build || true
 cp build.log "$OUT"/ 2>/dev/null || true
 

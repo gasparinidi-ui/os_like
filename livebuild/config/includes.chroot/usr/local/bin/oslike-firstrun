@@ -13,7 +13,8 @@ done
 
 # No modo live, adiciona o atalho do instalador
 if grep -qw "boot=live" /proc/cmdline && [ -f /usr/share/applications/install-debian.desktop ]; then
-	sed 's/^Name=.*/Name=Instalar OSLike/' /usr/share/applications/install-debian.desktop \
+	sed -e '/^Name\[/d' -e '/^GenericName/d' -e 's/^Name=.*/Name=Instalar OSLike/' \
+		/usr/share/applications/install-debian.desktop \
 		> "$DESKTOP_DIR/instalar-oslike.desktop"
 	chmod 0755 "$DESKTOP_DIR/instalar-oslike.desktop"
 fi
