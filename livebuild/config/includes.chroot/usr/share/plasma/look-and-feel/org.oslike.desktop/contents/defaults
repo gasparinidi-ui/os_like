@@ -25,3 +25,6 @@ ButtonsOnRight=IAX
 
 [ksplashrc][KSplash]
 Theme=org.kde.breeze
+
+[Wallpaper]
+Image=OSLike
