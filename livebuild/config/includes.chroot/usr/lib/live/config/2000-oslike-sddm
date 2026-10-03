@@ -9,3 +9,11 @@ cat > /etc/sddm.conf.d/live-autologin.conf <<CONF
 User=${LIVE_USERNAME}
 Session=plasma
 CONF
+
+# Sessão live: sem bloqueio automático de tela (a senha "live" não é óbvia)
+cat >> /etc/xdg/kscreenlockerrc <<CONF
+
+[Daemon]
+Autolock=false
+LockOnResume=false
+CONF
