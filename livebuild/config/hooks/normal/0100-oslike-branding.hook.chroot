@@ -30,3 +30,12 @@ if command -v gtk-update-icon-cache >/dev/null 2>&1; then
 fi
 
 chmod +x /usr/local/bin/oslike-firstrun /usr/share/oslike/desktop-icons/*.desktop
+
+# Atalho do instalador: o calamares-settings-debian copia install-debian.desktop
+# para a área de trabalho por conta própria, então renomeamos na origem.
+find / -xdev -name 'install-debian.desktop' -type f 2>/dev/null | while read -r f; do
+	sed -i -e '/^Name\[/d' -e '/^GenericName/d' -e '/^Comment\[/d' \
+		-e 's/^Name=.*/Name=Instalar OSLike/' \
+		-e 's/^Comment=.*/Comment=Instala o OSLike no disco/' "$f"
+	echo "Atalho do instalador renomeado: $f"
+done
