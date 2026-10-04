@@ -39,6 +39,8 @@ libreoffice-writer
 libreoffice-calc
 libreoffice-impress
 libreoffice-l10n-pt-br
+# Integração gráfica (sem ela o LibreOffice usa o modo básico X11, sem teclas mortas: á ã ê)
+libreoffice-gtk3
 vlc
 
 # --- Loja de aplicativos ---
