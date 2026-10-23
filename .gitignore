@@ -1,2 +1,7 @@
 /out/
 *.iso
+# Downloads e saídas de build guardados na pasta do projeto
+*.zip
+*.exe
+*.sha256
+build.log
