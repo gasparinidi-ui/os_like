@@ -15,7 +15,7 @@ done
 # para não aparecer "Install Debian")
 if [ -d /run/live ] || grep -q 'boot=live' /proc/cmdline; then
 	install -m 0755 /usr/share/oslike/instalar-oslike.desktop "$DESKTOP_DIR/"
-	rm -f "$DESKTOP_DIR/install-debian.desktop"
+	rm -f "$DESKTOP_DIR/install-debian.desktop" "$DESKTOP_DIR/calamares-install-debian.desktop"
 fi
 
 mkdir -p "$(dirname "$MARK")"

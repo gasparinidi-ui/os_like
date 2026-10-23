@@ -31,11 +31,25 @@ fi
 
 chmod +x /usr/local/bin/oslike-firstrun /usr/share/oslike/desktop-icons/*.desktop /usr/share/oslike/instalar-oslike.desktop
 
-# Atalho do instalador: o calamares-settings-debian copia install-debian.desktop
-# para a área de trabalho por conta própria, então renomeamos na origem.
-find / -xdev -name 'install-debian.desktop' -type f 2>/dev/null | while read -r f; do
+# Atalho do instalador (calamares-install-debian.desktop no Debian 13):
+# renomeia o item do menu para o nome do OSLike.
+find / -xdev -name '*install-debian.desktop' -type f 2>/dev/null | while read -r f; do
 	sed -i -e '/^Name\[/d' -e '/^GenericName/d' -e '/^Comment\[/d' \
 		-e 's/^Name=.*/Name=Instalar OSLike/' \
 		-e 's/^Comment=.*/Comment=Instala o OSLike no disco/' "$f"
 	echo "Atalho do instalador renomeado: $f"
 done
+
+# O atalho próprio do OSLike usa o mesmo comando do atalho do Debian
+DEB_DESKTOP=/usr/share/applications/calamares-install-debian.desktop
+OSL_DESKTOP=/usr/share/oslike/instalar-oslike.desktop
+if [ -f "$DEB_DESKTOP" ]; then
+	DEB_EXEC="$(grep -m1 '^Exec=' "$DEB_DESKTOP" || true)"
+	if [ -n "$DEB_EXEC" ]; then
+		grep -v '^Exec=' "$OSL_DESKTOP" > "$OSL_DESKTOP.tmp"
+		echo "$DEB_EXEC" >> "$OSL_DESKTOP.tmp"
+		mv "$OSL_DESKTOP.tmp" "$OSL_DESKTOP"
+		chmod 0755 "$OSL_DESKTOP"
+		echo "Atalho Instalar OSLike: $DEB_EXEC"
+	fi
+fi
