@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Instalar OSLike
+Comment=Instala o OSLike no disco
+Icon=system-software-install
+Exec=sh -c 'if command -v install-debian >/dev/null; then exec install-debian; else exec pkexec calamares; fi'
+Terminal=false

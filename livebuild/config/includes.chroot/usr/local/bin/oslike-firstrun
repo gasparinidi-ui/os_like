@@ -11,10 +11,11 @@ for f in /usr/share/oslike/desktop-icons/*.desktop; do
 	install -m 0755 "$f" "$DESKTOP_DIR/"
 done
 
-# No modo live, adiciona o atalho do instalador (mesmo nome de arquivo usado
-# pelo calamares-settings-debian, para não duplicar o ícone)
-if grep -qw "boot=live" /proc/cmdline && [ -f /usr/share/applications/install-debian.desktop ]; then
-	install -m 0755 /usr/share/applications/install-debian.desktop "$DESKTOP_DIR/install-debian.desktop"
+# No modo live, adiciona o atalho próprio do instalador (o do Debian é removido
+# para não aparecer "Install Debian")
+if [ -d /run/live ] || grep -q 'boot=live' /proc/cmdline; then
+	install -m 0755 /usr/share/oslike/instalar-oslike.desktop "$DESKTOP_DIR/"
+	rm -f "$DESKTOP_DIR/install-debian.desktop"
 fi
 
 mkdir -p "$(dirname "$MARK")"
